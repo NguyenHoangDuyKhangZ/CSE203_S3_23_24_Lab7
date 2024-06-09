@@ -245,6 +245,46 @@ public class CDStore extends javax.swing.JFrame {
             System.out.print("Selected file: " + selectedFile.getAbsolutePath());
         }
     }//GEN-LAST:event_RestoreButtonActionPerformed
+   private ArrayList<CD> searchByTitle(String searchText) {
+        ArrayList<CD> result = new ArrayList<>();
+        for (CD cd : cdManager.getCds()) {
+            if (cd.getTitle().toLowerCase().contains(searchText.toLowerCase())) {
+                result.add(cd);
+            }
+        }
+        return result;
+    }
+
+    private ArrayList<CD> searchByCollection(String searchText) {
+        ArrayList<CD> result = new ArrayList<>();
+        for (CD cd : cdManager.getCds()) {
+            if (cd.getcDcollecion().toLowerCase().contains(searchText.toLowerCase())) {
+                result.add(cd);
+            }
+        }
+        return result;
+    }
+
+    private ArrayList<CD> searchByType(String searchText) {
+        ArrayList<CD> result = new ArrayList<>();
+        for (CD cd : cdManager.getCds()) {
+            if (cd.getcDtype().toLowerCase().contentEquals(searchText.toLowerCase())) {
+                result.add(cd);
+            }
+        }
+        return result;
+    }
+
+    private ArrayList<CD> searchByPrice(String searchText) {
+        ArrayList<CD> result = new ArrayList<>();
+        for (CD cd : cdManager.getCds()) {
+            String price = Double.toString(cd.getPrice());
+            if (price.contains(searchText)) {
+                result.add(cd);
+            }
+        }
+        return result;
+    }
     private void loadCDs(String fileName) {
         ArrayList<CD> temp = new ArrayList<>();
         BufferedReader br = null;
